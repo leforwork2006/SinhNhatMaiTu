@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc mừng sinh nhật Mai Tú</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pacifico', cursive;
+    }
+    body {
+      background: url('images/anhmaitu.jpg') no-repeat center center/cover;
+      background-size: contain;
+      background-color: black;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      padding-top: 10vh;
+      z-index: 2;
+      position: relative;
+    }
+    h1 {
+      font-size: 3rem;
+      animation: pop 1s ease-in-out forwards;
+    }
+    p {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+    }
+    #gift-btn {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: #ff69b4;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .hidden {
+      display: none;
+    }
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: pink;
+      position: absolute;
+      animation: float 4s linear infinite;
+      clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 80%, 18% 100%, 0% 35%);
+    }
+    @keyframes float {
+      0% {transform: translateY(0); opacity: 1;}
+      100% {transform: translateY(-100vh); opacity: 0;}
+    }
+    @keyframes pop {
+      0% {transform: scale(0);}
+      100% {transform: scale(1);}
+    }
+    #timeline {
+      margin-top: 3rem;
+      font-size: 1rem;
+      text-align: left;
+      background: rgba(0,0,0,0.6);
+      padding: 1rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #secret-message {
+      margin-top: 2rem;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+  <div class="container">
+    <h1>Chúc mừng sinh nhật Mai Tú 🎉</h1>
+    <p>Ấn nút bên dưới nha 💖</p>
+    <button id="gift-btn">🎁 Nhấn để mở quà</button>
+    <div id="timeline" class="hidden">
+      <h2>Đôi điều muốn nói </h2>
+      <div id="secret-message">
+        <h3>🌹 Tin nhắn bí mật 🌹</h3>
+        <p>Chúc bạn Mai Tú tuổi mới vui vẻ luôn luôn xinh hơn, vui vẻ hơn, bớt quạu hơn và gọi điện cho mình nhiều hơn nè. Mong trong thời gian sắp tới thì chúc mình vơi cậu cùng nhau đi Đà Lạt và trải nghiệm nhiều điều nữa nha  🥰</p>
+      </div>
+    </div>
+  </div>
+
+  <audio id="birthday-audio" autoplay loop>
+    <source src="assets/music/HayGiuAnhChoNgayHomQua.mp3" type="audio/mp3">
+    Trình duyệt của bạn không hỗ trợ âm thanh.
+  </audio>
+
+  <script>
+    const btn = document.getElementById('gift-btn');
+    const timeline = document.getElementById('timeline');
+    const audio = document.getElementById('birthday-audio');
+
+    btn.addEventListener('click', () => {
+      btn.classList.add('hidden');
+      timeline.classList.remove('hidden');
+      audio.play();
+    });
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      document.getElementById('hearts').appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
